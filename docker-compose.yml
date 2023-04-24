@@ -3,8 +3,15 @@ services:
   dockerapp:
     build: .
     ports:
-      - "5000:5000"
+      - "5002:5000"
     depends_on:
       - redis
+    networks:
+      - my_net
   redis:
-    image: redis:3.2.0
+    image: redis
+    networks:
+      - my_net
+networks:
+  my_net:
+    driver: bridge
